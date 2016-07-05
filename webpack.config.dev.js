@@ -7,21 +7,17 @@ const path = require('path');
 const config = {
   devtool: 'eval-source-map',
   entry: {
+    'app': [
+      'react-hot-loader/patch',
+      'webpack-dev-server/client?http://localhost:3000',
+      'webpack/hot/only-dev-server',
+      path.join(__dirname, 'app'),
+    ],
     style: [
       path.join(__dirname, 'app', 'main.css'),
       'webpack/hot/only-dev-server'
     ],
-    app: [
-      path.join(__dirname, 'app'),
-      'webpack/hot/only-dev-server'
-    ],
-    vendor: Object.keys(pkg.dependencies),
-    'client': [
-      'react-hot-loader/patch',
-      'webpack-dev-server/client?http://localhost:3000',
-      'webpack/hot/only-dev-server'
-    ]
-
+    vendor: Object.keys(pkg.dependencies)
   },
   output: {
     path: path.join(__dirname, 'build'),
