@@ -17,8 +17,7 @@ const config = {
   output: {
     path: path.join(__dirname, 'build'),
     publicPath: '/ds-react-boilerplate/',
-    filename: '[name].[chunkhash].js',
-    chunkFilename: '[chunkhash].js'
+    filename: '[name].[hash].js'
   },
   module: {
     loaders: [
