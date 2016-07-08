@@ -5,7 +5,8 @@
   "scripts": {
     "stats": "webpack --profile --json > stats.json",
     "start": "node devServer.js",
-    "start:prod": "webpack --config ./webpack.config.prod"
+    "start:prod": "webpack --config ./webpack.config.prod",
+    "test:lint": "eslint . --ext .js --ext .jsx --ignore-path .gitignore --cache"
   },
   "keywords": [],
   "author": "Digital Surgeons",
@@ -21,6 +22,11 @@
     "babel-preset-stage-0": "^6.5.0",
     "clean-webpack-plugin": "^0.1.9",
     "css-loader": "^0.23.1",
+    "eslint": "^3.0.1",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-plugin-babel": "^3.3.0",
+    "eslint-plugin-import": "^1.10.2",
+    "eslint-plugin-jsx-a11y": "^1.5.5",
     "eslint-plugin-react": "^5.2.2",
     "extract-text-webpack-plugin": "^1.0.1",
     "html-webpack-plugin": "^2.17.0",
@@ -33,7 +39,6 @@
     "style-loader": "^0.13.1",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1",
-    "webpack-merge": "^0.13.0",
     "webpack-validator": "^2.1.1"
   },
   "dependencies": {

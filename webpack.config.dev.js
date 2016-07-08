@@ -8,7 +8,7 @@ const path = require('path');
 const config = {
   devtool: 'eval-source-map',
   entry: {
-    'app': [
+    app: [
       'react-hot-loader/patch',
       'webpack-dev-server/client?http://localhost:3000',
       'webpack/hot/only-dev-server',
@@ -30,7 +30,10 @@ const config = {
       // Load SCSS
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]-[hash:base64:5]!postcss-loader')
+        loader: ExtractTextPlugin.extract(
+          'style-loader',
+          'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]-[hash:base64:5]!postcss-loader'
+        )
       },
       // Load plain-ol' vanilla CSS
       {
@@ -62,12 +65,12 @@ const config = {
       template: 'index.html',
       environment: process.env.NODE_ENV
     }),
-    new ExtractTextPlugin('[name].[chunkhash].css', {allChunks: false})
+    new ExtractTextPlugin('[name].[chunkhash].css', { allChunks: false })
   ],
   resolve: {
     root: path.join(__dirname, 'app')
   }
-}
+};
 
 module.exports = validate(config, {
   rules: {

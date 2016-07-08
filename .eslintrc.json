@@ -1,16 +1,26 @@
 {
-    "extends": "airbnb",
-    "plugins": [
-        "react"
-    ],
-    "rules": {
-      "new-cap": [
-        2,
-        {
-          "capIsNew": false
-        }
-      ],
-      "consistent-return": 2,
-      "no-underscore-dangle": 0
+  "extends": "airbnb",
+  "plugins": [
+    "babel",
+    "import",
+    "react"
+  ],
+  "settings" : {
+    "import/resolver": {
+      "webpack": {
+        "config": "webpack.config.prod.js"
+      }
     }
+  },
+  "rules": {
+    "comma-dangle": 0,
+    "new-cap": [
+      2,
+      {
+        "capIsNew": false
+      }
+    ],
+    "consistent-return": 2,
+    "no-underscore-dangle": 0
+  }
 }

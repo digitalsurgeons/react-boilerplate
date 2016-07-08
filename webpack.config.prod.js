@@ -9,9 +9,6 @@ const path = require('path');
 
 const config = {
   devtool: 'source-map',
-  resolve: {
-    root: path.join(__dirname, 'app')
-  },
   entry: {
     app: path.join(__dirname, 'app'),
     vendor: Object.keys(pkg.dependencies)
@@ -60,7 +57,7 @@ const config = {
     }),
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': 'production'
+        NODE_ENV: 'production'
       }
     }),
     new webpack.optimize.CommonsChunkPlugin({
@@ -87,12 +84,12 @@ const config = {
       template: __dirname + '/index.html',
       environment: process.env.NODE_ENV
     }),
-    new ExtractTextPlugin('[name].[chunkhash].css', {allChunks: false})
+    new ExtractTextPlugin('[name].[chunkhash].css', { allChunks: false })
   ],
   resolve: {
     root: path.join(__dirname, 'app')
   }
-}
+};
 
 module.exports = validate(config, {
   rules: {
