@@ -1,4 +1,5 @@
 # DS React Boilerplate
+https://travis-ci.org/dsurgeons/ds-react-boilerplate.svg?branch=develop
 
 ## Quick Start
 
