@@ -1,10 +1,10 @@
 import React from 'react';
-import Button from '../Button';
+import Button from 'components/Button';
 
 export default function App(props) {
   return (
     <div>
-      <Button />
+      <Button>Primary Button</Button>
     </div>
   )
 }

@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const validate = require('webpack-validator');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const pkg = require('./package.json');
 const path = require('path');
 
@@ -11,11 +12,7 @@ const config = {
       'react-hot-loader/patch',
       'webpack-dev-server/client?http://localhost:3000',
       'webpack/hot/only-dev-server',
-      path.join(__dirname, 'app'),
-    ],
-    style: [
-      path.join(__dirname, 'app', 'main.css'),
-      'webpack/hot/only-dev-server'
+      path.join(__dirname, 'app')
     ],
     vendor: Object.keys(pkg.dependencies)
   },
@@ -25,10 +22,20 @@ const config = {
   },
   module: {
     loaders: [
+      // Load LESS
+      {
+        test: /\.less$/,
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader!less-loader')
+      },
+      // Load SCSS
+      {
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]-[hash:base64:5]!postcss-loader')
+      },
+      // Load plain-ol' vanilla CSS
       {
         test: /\.css$/,
-        loaders: ['style', 'css'],
-        include: path.join(__dirname, 'app', 'main.css')
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
       },
       {
         test: /\.jsx?$/,
@@ -54,14 +61,21 @@ const config = {
       filename: 'index.html',
       template: 'index.html',
       environment: process.env.NODE_ENV
-    })
+    }),
+    new ExtractTextPlugin('[name].[chunkhash].css', {allChunks: false})
   ],
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    root: path.join(__dirname, 'app')
   }
 }
 
-// Run validator in quiet mode to avoid output in stats
 module.exports = validate(config, {
+  rules: {
+    // this checks that files/folders that are found in directories specified
+    // via webpacks resolve.root option do not nameclash with node_modules
+    // packages.
+    'no-root-files-node-modules-nameclash': false,
+  },
+  // Run validator in quiet mode to avoid output in stats
   quiet: true
 });
