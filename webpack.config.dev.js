@@ -3,6 +3,7 @@ const validate = require('webpack-validator');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
+const Visualizer = require('webpack-visualizer-plugin');
 
 const config = {
   devtool: 'eval-source-map',
@@ -66,6 +67,7 @@ const config = {
       template: 'index.html',
       environment: process.env.NODE_ENV
     }),
+    new Visualizer(),
     new ExtractTextPlugin('[name].[chunkhash].css', { allChunks: false })
   ],
   resolve: {

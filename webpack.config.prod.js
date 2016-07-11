@@ -17,7 +17,6 @@ const config = {
   // Utilize long-term caching by adding content hashes (not compilation hashes) to compiled assets
   output: {
     path: path.join(__dirname, 'build'),
-    publicPath: '/ds-react-boilerplate/',
     filename: '[name].[hash].js'
   },
   module: {
@@ -57,7 +56,7 @@ const config = {
     }),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: 'production'
+        NODE_ENV: '"production"'
       }
     }),
     new webpack.optimize.CommonsChunkPlugin({
