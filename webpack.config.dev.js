@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const validate = require('webpack-validator');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const pkg = require('./package.json');
 const path = require('path');
 
 const config = {
@@ -14,7 +13,9 @@ const config = {
       'webpack/hot/only-dev-server',
       path.join(__dirname, 'app')
     ],
-    vendor: Object.keys(pkg.dependencies)
+    vendor: [
+      'react'
+    ]
   },
   output: {
     path: path.join(__dirname, 'build'),

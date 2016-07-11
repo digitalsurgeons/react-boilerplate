@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "description": "DS React Boilerplate",
   "scripts": {
-    "stats": "webpack --profile --json > stats.json",
-    "start": "node devServer.js",
-    "start:prod": "webpack --config ./webpack.config.prod",
+    "bundle": "webpack --config webpack.config.prod.js",
+    "prestart": "npm run bundle",
+    "start": "cross-env NODE_ENV=production PORT=8080 node server.js",
+    "start:dev": "node server.js",
     "test:lint": "eslint . --ext .js --ext .jsx --ignore-path .gitignore --cache"
   },
   "keywords": [],
@@ -42,6 +43,7 @@
     "webpack-validator": "^2.1.1"
   },
   "dependencies": {
+    "express": "^4.14.0",
     "jss": "^4.0.3",
     "jss-camel-case": "^1.1.0",
     "jss-nested": "^1.0.3",

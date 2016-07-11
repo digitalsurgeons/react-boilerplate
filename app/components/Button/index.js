@@ -10,3 +10,7 @@ export default function Button(props) {
     </div>
   );
 }
+
+Button.propTypes = {
+  children: React.PropTypes.node
+};

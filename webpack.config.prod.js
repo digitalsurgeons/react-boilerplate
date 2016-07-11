@@ -4,14 +4,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const PurifyCSSPlugin = require('purifycss-webpack-plugin');
-const pkg = require('./package.json');
 const path = require('path');
 
 const config = {
   devtool: 'source-map',
   entry: {
     app: path.join(__dirname, 'app'),
-    vendor: Object.keys(pkg.dependencies)
+    vendor: [
+      'react'
+    ]
   },
   // Utilize long-term caching by adding content hashes (not compilation hashes) to compiled assets
   output: {
