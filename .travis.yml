@@ -3,4 +3,4 @@ sudo: true
 dist: trusty
 node_js:
   - "5.0"
-script: npm run start:prod
+script: npm start
